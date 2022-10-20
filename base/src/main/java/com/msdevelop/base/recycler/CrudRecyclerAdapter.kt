@@ -10,8 +10,9 @@ abstract class CrudRecyclerAdapter<VB: ViewBinding, T>
     : RecyclerView.Adapter<CrudRecyclerAdapter<VB, T>.ViewHolder>(){
 
     abstract fun layout(inflater: LayoutInflater, parent: ViewGroup): VB
-    abstract fun bindView(context: Context, binding: VB, item: T)
+    abstract fun bindView(binding: VB, item: T, position: Int)
 
+    protected lateinit var context: Context
     internal val items = ArrayList<T>()
 
     fun setItems(items: List<T>) {
@@ -31,25 +32,24 @@ abstract class CrudRecyclerAdapter<VB: ViewBinding, T>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         return ViewHolder(
-            layout(LayoutInflater.from(parent.context), parent),
-            parent.context,
+            layout(LayoutInflater.from(context), parent)
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = this.items[position]
-        holder.bind(item)
+        holder.bind(item, position)
     }
 
     override fun getItemCount(): Int = this.items.size
 
     open inner class ViewHolder(
         private val binding: VB,
-        private val context: Context?,
     ): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: T){
-            bindView(context!!, binding, item)
+        fun bind(item: T, position: Int){
+            bindView(binding, item, position)
         }
     }
 

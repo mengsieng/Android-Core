@@ -5,19 +5,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ig.core.databinding.ItemCardBinding
+import com.msdevelop.base.recycler.CrudRecyclerAdapter
 import com.msdevelop.base.recycler.paging.PageListener
 import com.msdevelop.base.recycler.paging.PagingRecyclerAdapter
 
 class TestingPagingRecycler(
     private val recyclerView: RecyclerView,
     pagingListener: PageListener,
-): PagingRecyclerAdapter<ItemCardBinding, String>(pagingListener) {
+): CrudRecyclerAdapter<ItemCardBinding, String>(pagingListener) {
+
 
     override fun layout(inflater: LayoutInflater, parent: ViewGroup): ItemCardBinding
         = ItemCardBinding.inflate(inflater, parent, false)
 
     override fun bindView(context: Context, binding: ItemCardBinding, item: String) {
         binding.txtTitle.text = item
+    }
+
+    fun ss(){
+        this.context
     }
 
     override fun recyclerView(): RecyclerView = recyclerView
