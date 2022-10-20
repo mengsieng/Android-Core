@@ -1,4 +1,4 @@
-package com.msdevelop.base
+package com.msdevelop.base.recycler
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ abstract class BaseRecyclerViewAdapter<VB: ViewBinding, T>
     : RecyclerView.Adapter<BaseRecyclerViewAdapter<VB, T>.ViewHolder>() {
 
     abstract fun setLayout(inflater: LayoutInflater, parent: ViewGroup): VB
-    abstract fun setItem(): ArrayList<T>
     abstract fun bindView(context: Context, binding: VB, item: T)
+    abstract fun setItem(): ArrayList<T>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
