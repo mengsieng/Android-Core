@@ -1,29 +1,23 @@
 package com.ig.core.recycle
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ig.core.databinding.ItemCardBinding
-import com.msdevelop.base.recycler.CrudRecyclerAdapter
 import com.msdevelop.base.recycler.paging.PageListener
 import com.msdevelop.base.recycler.paging.PagingRecyclerAdapter
 
 class TestingPagingRecycler(
     private val recyclerView: RecyclerView,
     pagingListener: PageListener,
-): CrudRecyclerAdapter<ItemCardBinding, String>(pagingListener) {
+): PagingRecyclerAdapter<ItemCardBinding, String>(pagingListener) {
 
 
     override fun layout(inflater: LayoutInflater, parent: ViewGroup): ItemCardBinding
         = ItemCardBinding.inflate(inflater, parent, false)
 
-    override fun bindView(context: Context, binding: ItemCardBinding, item: String) {
+    override fun bindView(binding: ItemCardBinding, item: String, position: Int) {
         binding.txtTitle.text = item
-    }
-
-    fun ss(){
-        this.context
     }
 
     override fun recyclerView(): RecyclerView = recyclerView
