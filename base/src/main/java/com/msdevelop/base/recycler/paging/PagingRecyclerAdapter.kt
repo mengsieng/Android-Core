@@ -14,12 +14,24 @@ abstract class PagingRecyclerAdapter <VB: ViewBinding, T>(
     private var isLastPage: Boolean = false
     private var page = 0
 
+    fun setItems(items: List<T>) {
+        this.items.clear()
+        this.items.addAll(items)
+        refresh()
+        notifyItemRangeChanged(0, this.items.size)
+    }
+
     fun loadMoreItems(items: ArrayList<T>){
         this.items.addAll(items)
         notifyItemInserted(this.items.size)
         if(items.size < pageSize()){
             isLastPage = true
         }
+    }
+
+    private fun refresh(){
+        isLastPage = false
+        page = 0
     }
 
     fun build(){
