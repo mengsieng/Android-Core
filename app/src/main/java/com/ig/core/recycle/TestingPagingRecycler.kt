@@ -12,7 +12,6 @@ class TestingPagingRecycler(
     pagingListener: PageListener,
 ): PagingRecyclerAdapter<ItemCardBinding, String>(pagingListener) {
 
-
     override fun layout(inflater: LayoutInflater, parent: ViewGroup): ItemCardBinding
         = ItemCardBinding.inflate(inflater, parent, false)
 
@@ -21,6 +20,7 @@ class TestingPagingRecycler(
     }
 
     override fun recyclerView(): RecyclerView = recyclerView
+
     override fun pageSize(): Int = 10
 
 }

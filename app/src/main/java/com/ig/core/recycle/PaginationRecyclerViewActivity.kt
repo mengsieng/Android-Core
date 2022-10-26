@@ -20,11 +20,13 @@ class PaginationRecyclerViewActivity : BaseActivity<ActivityPaginationRecyclerVi
     override fun onCreateView() {
         onSetupRecyclerView()
         adapter.setItems(items1)
+
     }
 
     private fun onSetupRecyclerView() {
         adapter = TestingPagingRecycler(binding.rvItemTesting, object : PageListener {
             override fun loadMore(pageSize: Int, page: Int) {
+                Log.e("sds", "$page")
                 when (page) {
                     1 -> {
                         adapter.loadMoreItems(items2)

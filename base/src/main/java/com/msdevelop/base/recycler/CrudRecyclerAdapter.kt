@@ -12,10 +12,13 @@ abstract class CrudRecyclerAdapter<VB: ViewBinding, T>
     abstract fun layout(inflater: LayoutInflater, parent: ViewGroup): VB
     abstract fun bindView(binding: VB, item: T, position: Int)
 
+    /**
+     * Public variable
+     * */
     protected lateinit var context: Context
     internal val items = ArrayList<T>()
 
-    fun setItems(items: List<T>) {
+    open fun setItems(items: List<T>) {
         this.items.clear()
         this.items.addAll(items)
         notifyItemRangeChanged(0, this.items.size)
