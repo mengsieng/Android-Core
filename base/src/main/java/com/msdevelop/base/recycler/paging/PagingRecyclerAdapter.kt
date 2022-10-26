@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.ig.base.databinding.LoadingBinding
 import com.msdevelop.base.recycler.BaseViewHolder
-import java.util.*
-import java.util.logging.Handler
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
 
 abstract class PagingRecyclerAdapter <VB: ViewBinding, T>(
     private val pagingListener: PageListener,
@@ -44,16 +41,17 @@ abstract class PagingRecyclerAdapter <VB: ViewBinding, T>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<T> {
+        context = parent.context
         return when(viewType){
             loading -> LoadingHolder(
                 LoadingBinding.inflate(
-                    LayoutInflater.from(parent.context),
+                    LayoutInflater.from(context),
                     parent,
                     false,
                 )
             )
             else -> ItemListHolder(
-                layout(LayoutInflater.from(parent.context), parent)
+                layout(LayoutInflater.from(context), parent)
             )
         }
     }
